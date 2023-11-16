@@ -1,0 +1,5 @@
+a.out
+.DS_Store
+/libft-war-machine
+/libftTester
+.gitignore
