@@ -6,7 +6,7 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 18:19:22 by jingchen          #+#    #+#             */
-/*   Updated: 2023/11/20 19:00:38 by jingchen         ###   ########.fr       */
+/*   Updated: 2023/11/20 19:11:58 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@ int	ft_env(char **env)
 
 	i = -1;
 	while (env[++i])
-		printf("%s\n", env[i]);
+		ft_printf("%s\n", env[i]);
 	return (0);
 }
