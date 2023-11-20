@@ -6,13 +6,13 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 19:23:25 by jingchen          #+#    #+#             */
-/*   Updated: 2023/11/16 19:23:44 by jingchen         ###   ########.fr       */
+/*   Updated: 2023/11/20 19:03:04 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./builtins.h"
 
-int	main(int ac, char **av)
+int	main(int ac, char **av, char **env)
 {
 	if (ac > 1)
 	{
@@ -20,6 +20,8 @@ int	main(int ac, char **av)
 			ft_pwd ();
 		else if(!(ft_strncmp("echo", av[1], ft_strlen(av[1]))))
 			ft_echo(av);
+		else if(!(ft_strncmp("env", av[1], ft_strlen(av[1]))))
+			ft_env(env);
 	}
 	return (0);
 }
