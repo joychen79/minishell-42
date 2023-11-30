@@ -6,7 +6,7 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 13:22:57 by jingchen          #+#    #+#             */
-/*   Updated: 2023/11/30 20:16:28 by jingchen         ###   ########.fr       */
+/*   Updated: 2023/11/30 20:19:27 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,16 +65,6 @@ int	is_existing(t_env *env, char *name)
 	return (NULL);
 }*/
 
-static void	free_env(t_env *env)
-{
-	if(env)
-	//free(env->value);
-	{
-		free(env);
-	env = NULL;
-	}
-	
-}
 /*static void		free_node( t_env *env)
 {
 	if ( env->next == NULL)
@@ -112,20 +102,15 @@ static void	free_env(t_env *env)
 	}
 }*/
 
-void	export(t_env *env, char	*argv)
+static void	free_env(t_env *env)
 {
-	t_env	*aux;
-	char	*name;
-	name = var_name(env->value);
-	aux = new_env(argv);
+	if(env)
+	//free(env->value);
+	{
+		free(env);
+	env = NULL;
+	}
 	
-	if (is_existing(env, name) == 1)
-		{
-			unset(&env, name);
-		addenv_back(&env, aux);
-		}
-	if (!is_existing(env, name))
-		addenv_back(&env, aux);
 }
 
 void	unset(t_env **env, char	*argv)
@@ -151,6 +136,23 @@ void	unset(t_env **env, char	*argv)
 		tmp = tmp->next;
 	}
 }
+
+void	export(t_env *env, char	*argv)
+{
+	t_env	*aux;
+	char	*name;
+	name = var_name(env->value);
+	aux = new_env(argv);
+	
+	if (is_existing(env, name) == 1)
+		{
+			unset(&env, name);
+		addenv_back(&env, aux);
+		}
+	if (!is_existing(env, name))
+		addenv_back(&env, aux);
+}
+
 
 /*int	main(int ac, char **argv, char **env)
 {
