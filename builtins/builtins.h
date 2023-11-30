@@ -6,7 +6,7 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 18:06:27 by jingchen          #+#    #+#             */
-/*   Updated: 2023/11/26 18:24:14 by jingchen         ###   ########.fr       */
+/*   Updated: 2023/11/30 19:43:24 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ t_env	*get_env(char **str);
 t_env	*new_env(char *str);
 void	addenv_back(t_env **env, t_env *new);
 int		env_size(t_env *env);
-void	unset(t_env *env, char	*name);
+void	unset(t_env **env, char	*argv);
+void	export(t_env *env, char	*argv);
 
 #endif
