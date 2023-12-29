@@ -6,7 +6,7 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 13:22:57 by jingchen          #+#    #+#             */
-/*   Updated: 2023/12/29 20:04:24 by jingchen         ###   ########.fr       */
+/*   Updated: 2023/12/29 20:41:03 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,38 +24,44 @@ char	*var_name(char	*argv)
 	name = NULL;
 	while (argv[i])
 	{
-		if (argv[i] == '=' || argv[i] == '\0')
+		if (argv[i] == '=')
 		{
 			name = ft_substr(argv, (int)0, i);
+			printf("Name in var_name: %s\n", name);
+			break ;
 		}
 		i++;
-
 	}
+	if (argv[i] == '\0')
+		name = ft_substr(argv, (int)0, i);
+	printf("Last name in var_name: %s\n", name);
 	return (name);
-	free(name);
 }
 
-int	is_existing(t_env *env, char *name)
+int	is_existing(t_env **env, char *name)
 {
 	int		exist_len;
 	int		new_len;
-
+	t_env	*aux;
+	
+	aux = *env;
+	printf("name is: %s", name);
+	new_len = ft_strlen(name);
 	if (!env || name == NULL)
 		return (-1);
-	exist_len = ft_strlen(var_name(env->value));
-	new_len = ft_strlen(name);
-	while (env)
+	while (aux)
 	{
+		exist_len = ft_strlen(var_name(aux->value));
 		if ((exist_len = new_len)
-			&& (!(ft_strncmp(var_name(env->value), name, exist_len))))
+			&& (!(ft_strncmp(var_name(aux->value), name, exist_len))))
 			{
-				printf("name: %s, var_name: %s\n", name, var_name(env->value));
+				printf("name: %s, var_name: %s\n", name, var_name(aux->value));
 				return (1);
 			}
 	/*	else if ((exist_len < new_len)
 			&& (!(ft_strncmp(var_name(env->value), name, new_len))))
 			return (1);*/
-		env = env->next;
+		aux = aux->next;
 	}
 	return (0);
 }
@@ -75,15 +81,15 @@ void	export(t_env *env, char	*argv)
 {
 	t_env	*aux;
 	char	*name;
-	name = var_name (env->value);
+	name = var_name(argv);
 	aux = new_env(argv);
 
-	if (is_existing (env, name) == 1)
+	if (is_existing (&env, name) == 1)
 		{
 			unset (&env, name);
 		addenv_back (&env, aux);
 		}
-	if (!is_existing(env, name))
+	if (!is_existing(&env, name))
 		addenv_back(&env, aux);
 }
 
@@ -92,11 +98,13 @@ void unset(t_env **env, char *argv)
 	t_env *tmp;
 	t_env *aux;
 	char *name;
+	name = var_name(argv);
 
 	if (!env || !*env)
 		return ;
-	while(*env && !(ft_strncmp(var_name((*env)->value), argv, ft_strlen(var_name((*env)->value)))))
+	while(*env && !(ft_strncmp(var_name((*env)->value), name, ft_strlen(var_name((*env)->value)))))
 	{
+		printf("varname: %s, name: %s", var_name((*env)->value), name);
 		tmp = *env;
 		*env = (*env)->next;
 	//	free(tmp->value);
@@ -105,8 +113,9 @@ void unset(t_env **env, char *argv)
 	aux = *env;
 	while(aux && aux->next)
 	{
-		if(!(ft_strncmp(var_name(aux->next->value), argv, ft_strlen(var_name(aux->next->value)))))
+		if(!(ft_strncmp(var_name(aux->next->value), name, ft_strlen(var_name(aux->next->value)))))
 		{
+			printf("varname2: %s, name2: %s", var_name((*env)->value), name);
 			tmp = aux->next;
 			aux->next = tmp->next;
 		//	free(tmp->value);
@@ -125,9 +134,9 @@ int	main(int ac, char **argv, char **env)
 
 
 		envp = get_env(env);
-		name = argv[1];
+		name = var_name(argv[1]);
 		printf("%s\n", name);
-		i = is_existing(envp, name);
+		i = is_existing(&envp, name);
 		if (i == 0)
 			ft_printf("is new variation\n");
 		else if(i == 1)
