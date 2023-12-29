@@ -6,7 +6,7 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 13:22:57 by jingchen          #+#    #+#             */
-/*   Updated: 2023/12/13 18:26:31 by jingchen         ###   ########.fr       */
+/*   Updated: 2023/12/29 19:10:42 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,85 @@ int	is_existing(t_env *env, char *name)
 	}
 	return (0);
 }
+
+static void	free_env(t_env *env)
+{
+	if(env)
+	{
+	//free(env->value);
+		free(env);
+	env = NULL;
+	}
+}
+
+/*t_env	**unset(t_env **env, char *argv)
+{
+	t_env	**aux;
+	t_env	*tmp_aux;
+	t_env	*tmp;
+	char	*name;
+
+	if (!env || !*env)
+		return (NULL);
+	aux = env;
+	tmp = *aux;
+	tmp_aux = *aux;
+	if (!*aux)
+		return (NULL);
+	while (tmp_aux)
+	{
+		name = var_name (tmp_aux->value);
+		if (!(strncmp(name, argv, ft_strlen(name))))
+		{
+			tmp = tmp_aux;
+			tmp_aux->next = tmp->next;
+			tmp_aux = tmp_aux->next;
+			free_env (tmp);
+		}
+		tmp_aux = tmp_aux->next;
+	}
+	return (aux);
+}*/
+
+void	export(t_env *env, char	*argv)
+{
+	t_env	*aux;
+	char	*name;
+	name = var_name (env->value);
+	aux = new_env(argv);
+
+	if (is_existing (env, name) == 1)
+		{
+			unset (&env, name);
+		addenv_back (&env, aux);
+		}
+	if (!is_existing(env, name))
+		addenv_back(&env, aux);
+}
+
+/*void	*unset(t_env **env, char	*argv)
+{
+	t_env	*aux;
+	t_env	*tmp;
+	char	*name;
+	if (!env || !*env)
+		return ;
+	tmp = *env;
+	//printf("1\n");
+	while (tmp->next)
+	{
+		name = var_name(tmp->value);
+		//printf("name: %s\n", name);
+		if (!(strncmp(name, argv, ft_strlen(name))))
+		{
+			aux = tmp;
+			tmp->next = aux->next;
+			free_env(aux);
+		}
+		//printf("2\n");
+		tmp = tmp->next;
+	}
+}*/
 /*void	*ft_memdel(void *ptr)
 {
 	if (ptr)
@@ -64,6 +143,77 @@ int	is_existing(t_env *env, char *name)
 	}
 	return (NULL);
 }*/
+
+void unset(t_env **env, char *argv)
+{
+	t_env *tmp;
+	t_env *aux;
+	char *name;
+
+	if (!env || !*env)
+		return ;
+	while(*env && !(ft_strncmp(var_name((*env)->value), argv, ft_strlen(var_name((*env)->value)))))
+	{
+		tmp = *env;
+		*env = (*env)->next;
+	//	free(tmp->value);
+		free(tmp);
+	}
+	aux = *env;
+	while(aux && aux->next)
+	{
+		if(!(ft_strncmp(var_name(aux->next->value), argv, ft_strlen(var_name(aux->next->value)))))
+		{
+			tmp = aux->next;
+			aux->next = tmp->next;
+		//	free(tmp->value);
+			free(tmp);
+		}
+		aux = aux->next;
+	}
+}
+
+int	main(int ac, char **argv, char **env)
+{
+	t_env	*envp;
+	char	*name;
+	int		i;
+	t_env	**aux_envp;
+
+
+		envp = get_env(env);
+		name = var_name(argv[2]);
+		//printf("%s\n", name);
+	/*	i = is_existing(envp, name);
+		if (i == 0)
+			ft_printf("is new variation\n");
+		else if(i == 1)
+			ft_printf("it´s existing variation\n");
+		else
+			{
+				ft_printf("invalid variation\n");
+			return(0);
+			}*/
+	if (!(strncmp("myunset", argv[1], ft_strlen(argv[1]))))
+		unset (&envp, argv[2]);
+	/*if (!(strncmp("myexport", argv[1], ft_strlen(argv[1]))))
+		export (envp, argv[2]);
+	else if(!(ft_strncmp("myenv", argv[1], ft_strlen(argv[1]))))
+			ft_env(env);
+	aux_envp = envp;*/
+	while (envp)
+		{
+			printf("%s", (envp)->value);
+			if(ft_strncmp(envp->value, "", ft_strlen((envp->value))))
+				printf("\n");
+			printf("node\n");
+			envp = envp->next;	
+		}
+
+		//printf("we are here");
+	return (0);
+}
+
 
 /*static void		free_node( t_env *env)
 {
@@ -101,130 +251,3 @@ int	is_existing(t_env *env, char *name)
 		env = env->next;
 	}
 }*/
-
-static void	free_env(t_env *env)
-{
-	if(env)
-	//free(env->value);
-	{
-		free(env);
-	env = NULL;
-	}
-	
-}
-
-void	unset(t_env **env, char	*argv)
-{
-	t_env	*aux;
-	t_env	*tmp;
-	char	*name;
-	if (!env || !*env)
-		return ;
-	tmp = *env;
-	//printf("1\n");
-	while (tmp)
-	{
-		name = var_name(tmp->value);
-		//printf("name: %s\n", name);
-		if (!(strncmp(name, argv, ft_strlen(name))))
-		{
-			aux = tmp;
-			tmp->next = aux->next;
-			free_env(tmp);
-		}
-		//printf("2\n");
-		tmp = tmp->next;
-	}
-}
-
-/*void	unset(t_env **env, char *argv)
-{
-	t_env	*tmp;
-	t_env	*aux;
-	t_env	*i;
-	char	*name;
-
-	if (!env || !*env)
-		return ;
-	aux = *env;
-	while (aux)
-	{
-		name = var_name(tmp->value);
-		if (!(strncmp(name, argv, ft_strlen(name))))
-		{
-		tmp = aux;
-		aux = aux->next;
-		free (tmp);
-		}
-		aux =aux->next;
-	}
-	i = *env;
-	while (i && i->next)
-	{
-		name = var_name(i->next->value);
-		if (!(strncmp(name, argv, ft_strlen(name))))
-		{
-			tmp = i->next;
-			i->next = tmp->next;
-			free(tmp);
-		}
-		i = i->next;
-	}
-}*/
-
-void	export(t_env *env, char	*argv)
-{
-	t_env	*aux;
-	char	*name;
-	name = var_name(env->value);
-	aux = new_env(argv);
-	
-	if (is_existing(env, name) == 1)
-		{
-			unset(&env, name);
-		addenv_back(&env, aux);
-		}
-	if (!is_existing(env, name))
-		addenv_back(&env, aux);
-}
-
-
-int	main(int ac, char **argv, char **env)
-{
-	t_env	*envp;
-	char	*name;
-	int		i;
-	t_env	*aux_envp;
-
-
-		envp = get_env(env);
-		name = var_name(argv[2]);
-		//printf("%s\n", name);
-	/*	i = is_existing(envp, name);
-		if (i == 0)
-			ft_printf("is new variation\n");
-		else if(i == 1)
-			ft_printf("it´s existing variation\n");
-		else
-			{
-				ft_printf("invalid variation\n");
-			return(0);
-			}*/
-	if (!(strncmp("myunset", argv[1], ft_strlen(argv[1]))))
-		(unset (&envp, argv[2]));
-	if (!(strncmp("myexport", argv[1], ft_strlen(argv[1]))))
-		export (envp, argv[2]);
-	else if(!(ft_strncmp("myenv", argv[1], ft_strlen(argv[1]))))
-			ft_env(env);
-	aux_envp = envp;
-	while (aux_envp)
-		{
-			printf("%s", aux_envp->value);
-			if(ft_strncmp(aux_envp->value, "", ft_strlen(aux_envp->value)))
-				printf("\n");
-			aux_envp =aux_envp->next;	
-		}
-
-		//printf("we are here");
-	return (0);
-}

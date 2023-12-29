@@ -1,12 +1,12 @@
 # so_long
-NAME				=	buildins
+NAME	=	buildins
 
-SRC			=	echo.c \
-						env.c \
-						export.c \
-						get_env.c \
-						pwd.c\
-					#	main.c
+SRC		=	echo.c \
+			env.c \
+			export.c \
+			get_env.c \
+			pwd.c
+#			main.c
 
 OBJS				= $(SRC:.c=.o)
 
@@ -15,9 +15,9 @@ LIBFT				=	libft.a
 LIBFT_SRC			=	../libft/
 
 # Compiler
-CC					=	gcc
+CC					=	cc
 RM					=	rm -f
-CFLAGS				=	#-Wall -Werror -Wextra
+CFLAGS				=	-g3 -fsanitize=address #-Wall -Werror -Wextra
 
 
 # Rules
