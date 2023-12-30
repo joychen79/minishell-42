@@ -6,7 +6,7 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 18:11:01 by jingchen          #+#    #+#             */
-/*   Updated: 2023/12/29 19:56:38 by jingchen         ###   ########.fr       */
+/*   Updated: 2023/12/30 13:04:39 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ int	ft_echo(char **args)
 	int		i;
 	int		n_option;
 
-//别忘了把i的值改回1
-	i = 2;
+	i = 1;
 	n_option = 0;
 	if (nb_args(args) > 1)
 	{

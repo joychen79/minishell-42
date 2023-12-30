@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   export.c                                           :+:      :+:    :+:   */
+/*   unset_export.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 13:22:57 by jingchen          #+#    #+#             */
-/*   Updated: 2023/12/29 20:41:03 by jingchen         ###   ########.fr       */
+/*   Updated: 2023/12/30 13:22:22 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,12 @@ char	*var_name(char	*argv)
 		if (argv[i] == '=')
 		{
 			name = ft_substr(argv, (int)0, i);
-			printf("Name in var_name: %s\n", name);
 			break ;
 		}
 		i++;
 	}
 	if (argv[i] == '\0')
 		name = ft_substr(argv, (int)0, i);
-	printf("Last name in var_name: %s\n", name);
 	return (name);
 }
 
@@ -43,89 +41,71 @@ int	is_existing(t_env **env, char *name)
 	int		exist_len;
 	int		new_len;
 	t_env	*aux;
-	
+
 	aux = *env;
-	printf("name is: %s", name);
 	new_len = ft_strlen(name);
 	if (!env || name == NULL)
 		return (-1);
 	while (aux)
 	{
 		exist_len = ft_strlen(var_name(aux->value));
-		if ((exist_len = new_len)
+		if ((exist_len == new_len)
 			&& (!(ft_strncmp(var_name(aux->value), name, exist_len))))
-			{
-				printf("name: %s, var_name: %s\n", name, var_name(aux->value));
-				return (1);
-			}
-	/*	else if ((exist_len < new_len)
-			&& (!(ft_strncmp(var_name(env->value), name, new_len))))
-			return (1);*/
+		{
+			return (1);
+		}
 		aux = aux->next;
 	}
 	return (0);
 }
 
-/*static void	free_env(t_env *env)
+void	unset(t_env **env, char *argv)
 {
-	if(env)
-	{
-	//free(env->value);
-		free(env);
-	env = NULL;
-	}
-}
-*/
-
-void	export(t_env *env, char	*argv)
-{
+	t_env	*tmp;
 	t_env	*aux;
 	char	*name;
-	name = var_name(argv);
-	aux = new_env(argv);
-
-	if (is_existing (&env, name) == 1)
-		{
-			unset (&env, name);
-		addenv_back (&env, aux);
-		}
-	if (!is_existing(&env, name))
-		addenv_back(&env, aux);
-}
-
-void unset(t_env **env, char *argv)
-{
-	t_env *tmp;
-	t_env *aux;
-	char *name;
-	name = var_name(argv);
 
 	if (!env || !*env)
 		return ;
-	while(*env && !(ft_strncmp(var_name((*env)->value), name, ft_strlen(var_name((*env)->value)))))
+	while (*env && !(ft_strncmp(var_name((*env)->value), var_name(argv),
+				ft_strlen(var_name((*env)->value)))))
 	{
-		printf("varname: %s, name: %s", var_name((*env)->value), name);
 		tmp = *env;
 		*env = (*env)->next;
-	//	free(tmp->value);
 		free(tmp);
 	}
 	aux = *env;
-	while(aux && aux->next)
+	while (aux && aux->next)
 	{
-		if(!(ft_strncmp(var_name(aux->next->value), name, ft_strlen(var_name(aux->next->value)))))
+		if (!(ft_strncmp(var_name(aux->next->value), var_name(argv),
+					ft_strlen(var_name(aux->next->value)))))
 		{
-			printf("varname2: %s, name2: %s", var_name((*env)->value), name);
 			tmp = aux->next;
 			aux->next = tmp->next;
-		//	free(tmp->value);
 			free(tmp);
 		}
 		aux = aux->next;
 	}
 }
 
-int	main(int ac, char **argv, char **env)
+void	export(t_env *env, char	*argv)
+{
+	t_env	*aux;
+	char	*name;
+
+	name = var_name(argv);
+	aux = new_env(argv);
+
+	if (is_existing (&env, name) == 1)
+	{
+		unset (&env, name);
+		addenv_back (&env, aux);
+	}
+	if (!is_existing(&env, name))
+		addenv_back(&env, aux);
+}
+
+/*int	main(int ac, char **argv, char **env)
 {
 	t_env	*envp;
 	char	*name;
@@ -152,7 +132,6 @@ int	main(int ac, char **argv, char **env)
 		export (envp, argv[2]);
 	else if(!(ft_strncmp("myenv", argv[1], ft_strlen(argv[1]))))
 			ft_env(env);
-	//aux_envp = envp;
 	while (envp)
 		{
 			printf("%s", (envp)->value);
@@ -162,9 +141,8 @@ int	main(int ac, char **argv, char **env)
 			envp = envp->next;	
 		}
 
-		//printf("we are here");
 	return (0);
-}
+}*/
 
 
 /*static void		free_node( t_env *env)
@@ -203,3 +181,14 @@ int	main(int ac, char **argv, char **env)
 		env = env->next;
 	}
 }*/
+
+/*static void	free_env(t_env *env)
+{
+	if(env)
+	{
+	//free(env->value);
+		free(env);
+	env = NULL;
+	}
+}
+*/

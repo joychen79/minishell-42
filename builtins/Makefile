@@ -3,7 +3,7 @@ NAME	=	buildins
 
 SRC		=	echo.c \
 			env.c \
-			export.c \
+			unset_export.c \
 			get_env.c \
 			pwd.c
 #			main.c
@@ -30,7 +30,7 @@ $(NAME):	$(OBJS)
 			@$(CC) $(CFLAGS) $(OBJS) $(LIBFT_SRC)$(LIBFT) -o $(NAME)
 
 clean:
-			@make -C libft fclean
+			@make -C $(LIBFT_SRC) fclean
 			@$(RM) $(OBJS)
 
 
