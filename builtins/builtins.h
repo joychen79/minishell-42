@@ -6,7 +6,7 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 18:06:27 by jingchen          #+#    #+#             */
-/*   Updated: 2023/12/30 13:50:40 by jingchen         ###   ########.fr       */
+/*   Updated: 2023/12/30 14:24:00 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,6 @@ void	unset(t_env **env, char	*argv);
 void	export(t_env *env, char	*argv);
 int		is_existing(t_env **env, char *name);
 char	*var_name(char	*argv);
+int		ft_cd(char **args, t_env *env);
 
 #endif
