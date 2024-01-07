@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_doller.c                                   :+:      :+:    :+:   */
+/*   var_expension.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 12:14:37 by jingchen          #+#    #+#             */
-/*   Updated: 2024/01/07 16:21:06 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/01/07 16:25:37 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,3 @@ char	*var_expension(char *argv, t_env *env)
 	}
 	return (expenssion);
 }
-
-/*int	main(int ac, char **av, char **env)
-{
-	(void)ac;
-	t_env *envp;
-	
-	envp = get_env(env);
-
-	printf("%s\n", var_expension(av[1], envp));
-	return (0);
-}*/

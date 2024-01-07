@@ -6,7 +6,7 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 18:06:27 by jingchen          #+#    #+#             */
-/*   Updated: 2024/01/07 16:22:04 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/01/07 16:26:49 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,6 @@ typedef struct s_env
 	char			*value;
 	struct s_env	*next;
 }	t_env;
-
-typedef struct s_expansions
-{
-	char			*new_arg;
-	int				i;
-	int				j;
-}				t_expansions;
 
 int		ft_pwd(void);
 int		ft_echo(char **args);
