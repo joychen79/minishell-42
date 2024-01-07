@@ -6,7 +6,7 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 18:06:27 by jingchen          #+#    #+#             */
-/*   Updated: 2023/12/30 14:24:00 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/01/07 12:07:59 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,13 @@ t_env	*get_env(char **str);
 t_env	*new_env(char *str);
 void	addenv_back(t_env **env, t_env *new);
 int		env_size(t_env *env);
-void	unset(t_env **env, char	*argv);
-void	export(t_env *env, char	*argv);
+void	ft_unset(t_env **env, char	*argv);
+void	ft_export(t_env *env, char	*argv);
 int		is_existing(t_env **env, char *name);
 char	*var_name(char	*argv);
 int		ft_cd(char **args, t_env *env);
+void	exec_builtin(char **args, t_env *env);
+int		is_builtin(char *command);
+
 
 #endif

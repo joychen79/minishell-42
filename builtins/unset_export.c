@@ -6,7 +6,7 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 13:22:57 by jingchen          #+#    #+#             */
-/*   Updated: 2023/12/30 14:14:26 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/01/07 11:59:45 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	is_existing(t_env **env, char *name)
 	return (0);
 }
 
-void	unset(t_env **env, char *argv)
+void	ft_unset(t_env **env, char *argv)
 {
 	t_env	*tmp;
 	t_env	*aux;
@@ -88,7 +88,7 @@ void	unset(t_env **env, char *argv)
 	}
 }
 
-void	export(t_env *env, char	*argv)
+void	ft_export(t_env *env, char	*argv)
 {
 	t_env	*aux;
 	char	*name;
@@ -98,7 +98,7 @@ void	export(t_env *env, char	*argv)
 
 	if (is_existing (&env, name) == 1)
 	{
-		unset (&env, name);
+		ft_unset (&env, name);
 		addenv_back (&env, aux);
 	}
 	if (!is_existing(&env, name))
@@ -127,9 +127,9 @@ void	export(t_env *env, char	*argv)
 			return(0);
 			}
 	if (!(strncmp("myunset", argv[1], ft_strlen(argv[1]))))
-		unset (&envp, argv[2]);
+		ft_unset (&envp, argv[2]);
 	if (!(strncmp("myexport", argv[1], ft_strlen(argv[1]))))
-		export (envp, argv[2]);
+		ft_export (envp, argv[2]);
 	else if(!(ft_strncmp("myenv", argv[1], ft_strlen(argv[1]))))
 			ft_env(env);
 	while (envp)

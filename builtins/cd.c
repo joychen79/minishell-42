@@ -6,7 +6,7 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 13:28:16 by jingchen          #+#    #+#             */
-/*   Updated: 2023/12/30 14:04:40 by jingchen         ###   ########.fr       */
+/*   Updated: 2023/12/30 14:25:20 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ static int	go_to_path(int option, t_env *env)
 	return (ret);
 }
 
-int	ft_cd (char **args, t_env *env)
+int	ft_cd(char **args, t_env *env)
 {
 	int		cd_ret;
 
