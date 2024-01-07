@@ -6,7 +6,7 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 18:06:27 by jingchen          #+#    #+#             */
-/*   Updated: 2024/01/07 16:26:49 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/01/07 17:11:21 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,23 @@
 # include <errno.h>
 # include <signal.h>
 
-# define EXPANSION -36
-
 typedef struct s_env
 {
 	char			*value;
 	struct s_env	*next;
 }	t_env;
 
+typedef struct s_shell
+{
+	int		exit_stat;
+	char	**env;
+	char	*pwd;
+}	t_shell;
+
+/* Global Function */
+t_shell	*g_shell;
+
+/* BuiltIn Functions */
 int		ft_pwd(void);
 int		ft_echo(char **args);
 int		ft_env(char **env);
@@ -47,9 +56,10 @@ char	*var_name(char	*argv);
 int		ft_cd(char **args, t_env *env);
 void	exec_builtin(char **args, t_env *env);
 int		is_builtin(char *command);
+
+/*Manage Expansions*/
 char	*var_expension(char *argv, t_env *env);
 char	*parsing_doller(char *argv);
 char	*env_value(char *env);
-
 
 #endif
