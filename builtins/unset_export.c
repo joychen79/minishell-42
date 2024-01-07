@@ -6,7 +6,7 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 13:22:57 by jingchen          #+#    #+#             */
-/*   Updated: 2024/01/07 11:59:45 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/01/07 14:00:47 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void	ft_unset(t_env **env, char *argv)
 {
 	t_env	*tmp;
 	t_env	*aux;
-	char	*name;
 
 	if (!env || !*env)
 		return ;
