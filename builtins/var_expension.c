@@ -6,13 +6,13 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 12:14:37 by jingchen          #+#    #+#             */
-/*   Updated: 2024/01/07 16:25:37 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/01/14 16:22:55 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./builtins.h"
 
-char	*env_value(char *env)
+char	*envvalue(char *env)
 {
 	int		i;
 	char	*env_value;
@@ -48,7 +48,7 @@ char	*parsing_doller(char *argv)
 	return (valid_name);
 }
 
-char	*var_expension(char *argv, t_env *env)
+char	*var_expansion(char *argv, t_env *env)
 {
 	char	*var_exp;
 	char	*expenssion;
@@ -59,7 +59,7 @@ char	*var_expension(char *argv, t_env *env)
 	while (env)
 	{
 		if (is_existing (&env, var_exp) == 1)
-			expenssion = env_value(env->value);
+			expenssion = envvalue(env->value);
 		env = env->next;
 	}
 	return (expenssion);

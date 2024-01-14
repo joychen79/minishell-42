@@ -6,7 +6,7 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 18:06:27 by jingchen          #+#    #+#             */
-/*   Updated: 2024/01/07 17:11:21 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/01/14 16:22:53 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ void	exec_builtin(char **args, t_env *env);
 int		is_builtin(char *command);
 
 /*Manage Expansions*/
-char	*var_expension(char *argv, t_env *env);
+char	*var_expansion(char *argv, t_env *env);
 char	*parsing_doller(char *argv);
-char	*env_value(char *env);
+char	*envvalue(char *env);
 
 #endif
