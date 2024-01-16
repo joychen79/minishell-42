@@ -6,7 +6,7 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 14:10:22 by jingchen          #+#    #+#             */
-/*   Updated: 2024/01/07 12:00:57 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/01/16 16:48:43 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,44 @@
 
 int	is_builtin(char *command)
 {
-	if (ft_strcmp(command, "echo") == 0)
+	if (ft_strncmp(command, "echo", ft_strlen(command)) == 0)
 		return (1);
-	if (ft_strcmp(command, "cd") == 0)
+	if (ft_strncmp(command, "cd", ft_strlen(command)) == 0)
 		return (1);
-	if (ft_strcmp(command, "pwd") == 0)
+	if (ft_strncmp(command, "pwd", ft_strlen(command)) == 0)
 		return (1);
-	if (ft_strcmp(command, "env") == 0)
+	if (ft_strncmp(command, "env", ft_strlen(command)) == 0)
 		return (1);
-	if (ft_strcmp(command, "export") == 0)
+	if (ft_strncmp(command, "export", ft_strlen(command)) == 0)
 		return (1);
-	if (ft_strcmp(command, "unset") == 0)
+	if (ft_strncmp(command, "unset", ft_strlen(command)) == 0)
 		return (1);
 	return (0);
 }
 
 void	exec_builtin(char **argv, t_env *env)
 {
-	if (ft_strcmp(argv[0], "echo") == 0)
+	int	i;
+
+	i = 1;
+	if (ft_strncmp(argv[0], "echo", ft_strlen(argv[0])) == 0)
 		ft_echo(argv);
-	if (ft_strcmp(argv[0], "cd") == 0)
-		ft_cd(argv, env);
-	if (ft_strcmp(argv[0], "pwd") == 0)
+	if (ft_strncmp(argv[0], "cd", ft_strlen(argv[0])) == 0)
+		ft_cd(argv[1], env);
+	if (ft_strncmp(argv[0], "pwd", ft_strlen(argv[0])) == 0)
 		ft_pwd();
-	if (ft_strcmp(argv[0], "env") == 0)
+	if (ft_strncmp(argv[0], "env", ft_strlen(argv[0])) == 0)
 		ft_env(env);
-	if (ft_strcmp(argv[0], "export") == 0)
-		export(env, argv);
-	if (ft_strcmp(argv[0], "unset") == 0)
-		unset(&env, argv);
+	if (ft_strncmp(argv[0], "export", ft_strlen(argv[0])) == 0)
+	{
+		while (argv[i])
+			ft_export(env, argv[i]);
+		i++;
+	}
+	if (ft_strncmp(argv[0], "unset", ft_strlen(argv[0])) == 0)
+	{
+		while (argv[i])
+			ft_unset(&env, argv[i]);
+		i++;
+	}
 }

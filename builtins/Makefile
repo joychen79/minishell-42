@@ -6,9 +6,10 @@ SRC		=	echo.c \
 			unset_export.c \
 			get_env.c \
 			pwd.c \
+			cd.c \
 			var_expension.c \
 			exe_builtins.c \
-			var_expension
+			var_expansion.c
 #			main.c
 
 OBJS				= $(SRC:.c=.o)
