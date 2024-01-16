@@ -6,7 +6,7 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 18:11:01 by jingchen          #+#    #+#             */
-/*   Updated: 2023/12/30 13:38:02 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/01/16 19:19:36 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,11 @@ int	ft_pwd(void)
 	if (cwd == NULL)
 	{
 		perror("Can not get current working directory!\n");
-		exit (-1);
+		g_exit_status = 1;
+		exit(-1);
 	}
 	else
-		ft_printf("Current working directory is: %s\n", buf);
+		ft_printf("%s\n", buf);
+	g_exit_status = 0;
 	return (0);
 }

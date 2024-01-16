@@ -6,7 +6,7 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 18:06:27 by jingchen          #+#    #+#             */
-/*   Updated: 2024/01/16 16:48:23 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/01/16 20:18:51 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct s_shell
 }	t_shell;
 
 /* Global Function */
-t_shell	*g_shell;
+int	g_exit_status;
 
 /* BuiltIn Functions */
 int		ft_pwd(void);
@@ -51,7 +51,7 @@ t_env	*new_env(char *str);
 void	addenv_back(t_env **env, t_env *new);
 int		env_size(t_env *env);
 void	ft_unset(t_env **env, char	*argv);
-void	ft_export(t_env *env, char	*argv);
+int		ft_export(t_env *env, char	*argv);
 int		is_existing(t_env **env, char *name);
 char	*var_name(char	*argv);
 char	*get_current_path(t_env *env);
@@ -64,5 +64,7 @@ int		is_builtin(char *command);
 char	*var_expansion(char *argv, t_env *env);
 char	*parsing_doller(char *argv);
 char	*envvalue(char *env);
+char	*parsing_g_exit_state(char *argv);
+void	echo_expansion(char **argv, t_env *env);
 
 #endif

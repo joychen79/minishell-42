@@ -6,7 +6,7 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 18:11:01 by jingchen          #+#    #+#             */
-/*   Updated: 2024/01/16 17:03:46 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/01/16 19:20:36 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,6 @@ int	ft_echo(char **args)
 	}
 	if (n_option == 0)
 		write(1, "\n", 1);
+	g_exit_status = 0;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 19:23:25 by jingchen          #+#    #+#             */
-/*   Updated: 2024/01/16 17:07:23 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/01/16 20:41:30 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,17 @@ int	main(int ac, char **av, char **env)
 			ft_printf("%d\n", env_size(get_env(env)));
 	}*/
 	(void)ac;
-	t_env	*envp;
+	(void)env;
+	/*t_env	*envp = NULL;
 	envp = get_env(env);
-	exec_builtin(av, envp);
 	while(envp)
 	{
-		printf("%s\n", envp->value);
+		ft_printf("%s\n", envp->value);
 		envp = envp->next;
-	}
+	}*/
+
+	//	ft_printf("%s",var_expansion(av[1], envp));
+	printf("%s\n", parsing_doller(av[1]));
+
 	return (0);
 }

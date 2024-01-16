@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   var_expension.c                                    :+:      :+:    :+:   */
+/*   var_expansion.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 12:14:37 by jingchen          #+#    #+#             */
-/*   Updated: 2024/01/14 16:22:55 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/01/16 20:58:41 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,23 @@ char	*parsing_doller(char *argv)
 	return (valid_name);
 }
 
+/*char	*parsing_g_exit_state(char *argv)
+{
+	int		i;
+	char	*status;
+
+	i = 0;
+	status = NULL;
+	while (argv[i])
+	{
+		if (argv[i] == '$' && argv[i + 1] == '?')
+			break ;
+		i++;
+	}
+	status = ft_itoa(g_exit_status);
+	return (status);
+}*/
+
 char	*var_expansion(char *argv, t_env *env)
 {
 	char	*var_exp;
@@ -64,3 +81,16 @@ char	*var_expansion(char *argv, t_env *env)
 	}
 	return (expenssion);
 }
+
+/*void	echo_expansion(char **argv, t_env *env)
+{
+	//	int i;
+	//	i = 1;
+	//	while(argv[i])
+		{
+		ft_printf("%s",var_expansion(argv[1], env));
+	//	if(argv[i])
+	//	ft_printf(" ");
+	//	i++;
+	//	}
+}*/

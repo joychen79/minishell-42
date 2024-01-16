@@ -6,7 +6,7 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 13:28:16 by jingchen          #+#    #+#             */
-/*   Updated: 2024/01/16 16:36:28 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/01/16 19:54:21 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,23 +62,28 @@ int	ft_cd(char *argv, t_env *env)
 {
 	char	*oldpwd;
 	char	*newpwd;
+	int		code;
 
+	oldpwd = ft_strjoin("OLDPWD=", get_current_path(env));
 	if (!argv || ft_strncmp (argv, "-", ft_strlen (argv)) == 0)
-	{
-		oldpwd = ft_strjoin("OLDPWD=", get_current_path(env));
 		newpwd = ft_strjoin("PWD=", path_option(argv, env));
+	else
+		newpwd = ft_strjoin("PWD=", argv);
+	if (!argv || ft_strncmp (argv, "-", ft_strlen (argv)) == 0)
+		code = chdir (path_option (argv, env));
+	else
+		code = chdir (argv);
+	if (!code)
+	{
+		ft_export(env, oldpwd);
+		ft_export(env, newpwd);
 	}
 	else
 	{
-		oldpwd = ft_strjoin("OLDPWD=", get_current_path(env));
-		newpwd = ft_strjoin("PWD=", argv);
+		ft_printf ("cd: no such file or directory: %s\n", argv);
+		g_exit_status = 1;
 	}
-	ft_export(env, oldpwd);
-	if (!argv || ft_strncmp (argv, "-", ft_strlen (argv)) == 0)
-		chdir (path_option (argv, env));
-	else
-		chdir (argv);
-	ft_export(env, newpwd);
+	g_exit_status = 0;
 	return (0);
 }
 

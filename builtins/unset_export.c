@@ -6,7 +6,7 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 13:22:57 by jingchen          #+#    #+#             */
-/*   Updated: 2024/01/07 14:00:47 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/01/16 19:42:26 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	ft_unset(t_env **env, char *argv)
 	t_env	*tmp;
 	t_env	*aux;
 
-	if (!env || !*env)
+	if (!env || !*env || !argv)
 		return ;
 	while (*env && !(ft_strncmp(var_name((*env)->value), var_name(argv),
 				ft_strlen(var_name((*env)->value)))))
@@ -85,16 +85,18 @@ void	ft_unset(t_env **env, char *argv)
 		}
 		aux = aux->next;
 	}
+	g_exit_status = 0;
 }
 
-void	ft_export(t_env *env, char	*argv)
+int	ft_export(t_env *env, char	*argv)
 {
 	t_env	*aux;
 	char	*name;
 
+	if (!argv)
+		return (0);
 	name = var_name(argv);
 	aux = new_env(argv);
-
 	if (is_existing (&env, name) == 1)
 	{
 		ft_unset (&env, name);
@@ -102,6 +104,8 @@ void	ft_export(t_env *env, char	*argv)
 	}
 	if (!is_existing(&env, name))
 		addenv_back(&env, aux);
+	g_exit_status = 0;
+	return (0);
 }
 
 /*int	main(int ac, char **argv, char **env)
