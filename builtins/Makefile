@@ -7,10 +7,9 @@ SRC		=	echo.c \
 			get_env.c \
 			pwd.c \
 			cd.c \
-			var_expension.c \
 			exe_builtins.c \
-			var_expansion.c
-#			main.c
+			var_expansion.c \
+			main.c
 
 OBJS				= $(SRC:.c=.o)
 
@@ -21,7 +20,7 @@ LIBFT_SRC			=	../libft/
 # Compiler
 CC					=	cc
 RM					=	rm -f
-CFLAGS				=	-g3 -fsanitize=address #-Wall -Werror -Wextra
+CFLAGS				=	-g3 -fsanitize=address -Wall -Werror -Wextra
 
 
 # Rules

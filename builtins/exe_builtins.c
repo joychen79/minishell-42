@@ -6,7 +6,7 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 14:10:22 by jingchen          #+#    #+#             */
-/*   Updated: 2024/01/16 16:48:43 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/01/16 17:06:17 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,11 @@ void	exec_builtin(char **argv, t_env *env)
 	if (ft_strncmp(argv[0], "export", ft_strlen(argv[0])) == 0)
 	{
 		while (argv[i])
-			ft_export(env, argv[i]);
-		i++;
+			ft_export(env, argv[i++]);
 	}
 	if (ft_strncmp(argv[0], "unset", ft_strlen(argv[0])) == 0)
 	{
 		while (argv[i])
-			ft_unset(&env, argv[i]);
-		i++;
+			ft_unset(&env, argv[i++]);
 	}
 }
