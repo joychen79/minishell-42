@@ -6,11 +6,13 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 19:23:25 by jingchen          #+#    #+#             */
-/*   Updated: 2024/01/16 20:41:30 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/01/17 20:37:09 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./builtins.h"
+
+extern	int	g_exit_status;
 
 int	main(int ac, char **av, char **env)
 {
@@ -26,17 +28,23 @@ int	main(int ac, char **av, char **env)
 			ft_printf("%d\n", env_size(get_env(env)));
 	}*/
 	(void)ac;
-	(void)env;
-	/*t_env	*envp = NULL;
+
+	
+	t_env	*envp = NULL;
 	envp = get_env(env);
-	while(envp)
+	//exec_builtin(av, envp);
+	//ft_cd(av[2], envp);
+	//int i = 2;
+	/*while(av[i])
+		ft_unset(&envp, av[i++]);*/
+	/*while(envp)
 	{
 		ft_printf("%s\n", envp->value);
 		envp = envp->next;
 	}*/
 
-	//	ft_printf("%s",var_expansion(av[1], envp));
-	printf("%s\n", parsing_doller(av[1]));
+	ft_printf("%s",var_expansion(av[1], envp));
+
 
 	return (0);
 }

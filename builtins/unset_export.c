@@ -6,11 +6,13 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 13:22:57 by jingchen          #+#    #+#             */
-/*   Updated: 2024/01/16 19:42:26 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/01/17 19:16:57 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./builtins.h"
+
+extern	int	g_exit_status;
 
 char	*var_name(char	*argv)
 {

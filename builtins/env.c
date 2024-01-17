@@ -6,11 +6,13 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 18:19:22 by jingchen          #+#    #+#             */
-/*   Updated: 2024/01/16 19:21:47 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/01/17 19:16:34 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./builtins.h"
+
+extern	int	g_exit_status;
 
 /*int	ft_env(char **str)
 {

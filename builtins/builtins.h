@@ -6,7 +6,7 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 18:06:27 by jingchen          #+#    #+#             */
-/*   Updated: 2024/01/16 20:18:51 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/01/17 21:13:22 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@
 # include <limits.h>
 # include <errno.h>
 # include <signal.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+
+# define STDIN 0
+# define STDOUT 1
+# define STDERR 2
 
 typedef struct s_env
 {
@@ -37,6 +43,14 @@ typedef struct s_shell
 	char	**env;
 	char	*pwd;
 }	t_shell;
+
+typedef struct	s_sig
+{
+	int				sigint;
+	int				sigquit;
+	pid_t			pid;
+}				t_sig;
+
 
 /* Global Function */
 int	g_exit_status;
@@ -64,7 +78,13 @@ int		is_builtin(char *command);
 char	*var_expansion(char *argv, t_env *env);
 char	*parsing_doller(char *argv);
 char	*envvalue(char *env);
-char	*parsing_g_exit_state(char *argv);
-void	echo_expansion(char **argv, t_env *env);
+//char	*parsing_g_exit_state(char *argv);
+//void	echo_expansion(char **argv, t_env *env);
+
+//handel signal
+void	sig_init(void);
+void	sig_int(int code, t_sig g_sig);
+void	sig_quit(int code, t_sig g_sig);
+
 
 #endif
