@@ -9,6 +9,7 @@ SRC		=	echo.c \
 			cd.c \
 			exe_builtins.c \
 			var_expansion.c \
+			signal.c \
 			main.c
 
 OBJS				= $(SRC:.c=.o)
@@ -30,7 +31,7 @@ $(LIBFT):
 			@make -C $(LIBFT_SRC)
 			
 $(NAME):	$(OBJS)
-			@$(CC) $(CFLAGS) $(OBJS) $(LIBFT_SRC)$(LIBFT) -o $(NAME)
+			@$(CC) $(CFLAGS) $(OBJS) $(LIBFT_SRC)$(LIBFT) -o $(NAME) -lreadline
 
 clean:
 			@make -C $(LIBFT_SRC) fclean
