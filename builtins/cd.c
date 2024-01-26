@@ -6,13 +6,13 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 13:28:16 by jingchen          #+#    #+#             */
-/*   Updated: 2024/01/18 19:56:19 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/01/26 18:44:00 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 
-extern	int	g_exit_status;
+//extern	int	g_exit_status;
 // step 1: save the current working directory in a char *;
 // step 2: use chdir to change working directory;
 // step 3: save the new directory in a char * and update the PWD in the env;
@@ -73,7 +73,7 @@ int	ft_cd(char *argv, t_env *env)
 	if (!argv || ft_strncmp (argv, "-", ft_strlen (argv)) == 0)
 		code = chdir (path_option (argv, env));
 	else
-		code = chdir (argv);
+		code = chdir(argv);
 	if (!code)
 	{
 		ft_export(env, oldpwd);
@@ -83,10 +83,9 @@ int	ft_cd(char *argv, t_env *env)
 	else
 	{
 		ft_printf ("cd: no such file or directory: %s\n", argv);
-		g_exit_status = 1;
+		exit (1);
 	}
-	printf("%d\n", g_exit_status);
-	return (0);
+		return (0);
 }
 
 /*int main (int ac, char **av, char **env)

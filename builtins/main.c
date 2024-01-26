@@ -6,13 +6,13 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 19:23:25 by jingchen          #+#    #+#             */
-/*   Updated: 2024/01/17 20:37:09 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/01/26 18:52:06 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./builtins.h"
 
-extern	int	g_exit_status;
+//extern	int	g_exit_status;
 
 int	main(int ac, char **av, char **env)
 {
@@ -28,22 +28,24 @@ int	main(int ac, char **av, char **env)
 			ft_printf("%d\n", env_size(get_env(env)));
 	}*/
 	(void)ac;
-
+	signal(SIGINT, signal_handler);
+	signal(SIGQUIT, SIG_IGN);
 	
-	t_env	*envp = NULL;
+	t_env	**envp = NULL;
 	envp = get_env(env);
 	//exec_builtin(av, envp);
 	//ft_cd(av[2], envp);
 	//int i = 2;
-	/*while(av[i])
-		ft_unset(&envp, av[i++]);*/
-	/*while(envp)
+	//while(av[i])
+		//ft_unset(&envp, av[i++]);*/
+	/*while(envp!= NULL)
 	{
 		ft_printf("%s\n", envp->value);
 		envp = envp->next;
 	}*/
 
-	ft_printf("%s",var_expansion(av[1], envp));
+	//ft_printf("%s",var_expansion(av[1], envp));
+	ft_env(envp);
 
 
 	return (0);

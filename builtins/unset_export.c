@@ -6,7 +6,7 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 13:22:57 by jingchen          #+#    #+#             */
-/*   Updated: 2024/01/17 19:16:57 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/01/26 18:55:39 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ char	*var_name(char	*argv)
 	int		i;
 
 	i = 0;
-
 	if (!argv)
 		return (NULL);
 	name = NULL;

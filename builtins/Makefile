@@ -23,7 +23,6 @@ CC					=	cc
 RM					=	rm -f
 CFLAGS				=	-g3 -fsanitize=address -Wall -Werror -Wextra
 
-
 # Rules
 all:		$(LIBFT) $(NAME)
 

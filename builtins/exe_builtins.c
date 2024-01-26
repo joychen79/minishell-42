@@ -6,13 +6,13 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 14:10:22 by jingchen          #+#    #+#             */
-/*   Updated: 2024/01/17 19:32:49 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/01/26 18:48:49 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./builtins.h"
 
-extern	int	g_exit_status;
+//extern	int	g_exit_status;
 
 int	is_builtin(char *command)
 {
@@ -47,7 +47,7 @@ static void	exec_builtin_util(char **argv, t_env *env)
 		else
 			ft_pwd();
 	}
-	if (ft_strncmp(argv[0], "env", ft_strlen(argv[0])) == 0)
+	if (ft_strncmp(argv[1], "env", ft_strlen(argv[1])) == 0)
 		ft_env(env);
 }
 

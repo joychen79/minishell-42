@@ -6,13 +6,13 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 12:14:37 by jingchen          #+#    #+#             */
-/*   Updated: 2024/01/18 18:01:58 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/01/26 16:58:05 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./builtins.h"
 
-extern	int	g_exit_status;
+//extern	int	g_exit_status;
 
 //se puede gestionar con funcion de echo, pero tambien se debería poder gestionar con entrada y salida de comanndo.
 // Por otro lado, cuando se lee el commando con Readline, se deberia reconocer el $ como varia cuando no hay comillas o con comilla doble, pero con comilla simple, se debe conocer como el sinbolo tal cual.

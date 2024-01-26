@@ -6,7 +6,7 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 18:06:27 by jingchen          #+#    #+#             */
-/*   Updated: 2024/01/18 20:04:01 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/01/26 18:49:58 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,6 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
-# define STDIN 0
-# define STDOUT 1
-# define STDERR 2
-
 typedef struct s_env
 {
 	char			*value;
@@ -44,26 +40,18 @@ typedef struct s_shell
 	char	*pwd;
 }	t_shell;
 
-typedef struct	s_sig
-{
-	int				sigint;
-	int				sigquit;
-	pid_t			pid;
-}				t_sig;
-
-
 /* Global Function */
-int	g_exit_status;
+int		g_exit_status;
 
 /* BuiltIn Functions */
 int		ft_pwd(void);
 int		ft_echo(char **args);
 //int		ft_env(char **env);
-int		ft_env(t_env *env);
-t_env	*get_env(char **str);
+int		ft_env(t_env **env);
+t_env	**get_env(char **str);
 t_env	*new_env(char *str);
 void	addenv_back(t_env **env, t_env *new);
-int		env_size(t_env *env);
+//int		env_size(t_env **env); <- no se ha usado por ahora.
 void	ft_unset(t_env **env, char	*argv);
 int		ft_export(t_env *env, char	*argv);
 int		is_existing(t_env **env, char *name);
@@ -82,9 +70,7 @@ char	*envvalue(char *env);
 //void	echo_expansion(char **argv, t_env *env);
 
 //handel signal
-void	sig_init(void);
-void	sig_int(int code, t_sig g_sig);
-void	sig_quit(int code, t_sig g_sig);
+void	signal_handler(int sig);
 
 
 #endif
