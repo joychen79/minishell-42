@@ -6,11 +6,13 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 20:41:02 by jingchen          #+#    #+#             */
-/*   Updated: 2024/01/26 17:44:45 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/01/26 20:20:28 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./builtins.h"
+
+// sigue sin funcionar rl_replace.
 
 void	signal_handler(int sig)
 {
@@ -18,14 +20,14 @@ void	signal_handler(int sig)
 	{
 		printf ("\n");
 		rl_on_new_line();
-		rl_replace_line ("", 0);
+		//rl_replace_line ("", 0);
 		rl_redisplay ();
 		g_exit_status = 1;
 	}
 }
 
 	
-/*ctrl+c = SIGINT; ctrl+4 = SIGQUIT;
+/* ctrl+c = SIGINT; ctrl+4 = SIGQUIT;
 
 - en el proceso padre; (o sea main)
 	signal(SIGINT, signal_handler);
@@ -48,4 +50,4 @@ void	signal_handler(int sig)
 - el proceso hijo (o sea cuando gestionar heredoc o en modo bash)
 
 	signal(SIGINT, SIG_DFL);
-	signal(SIGQUIT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);*/

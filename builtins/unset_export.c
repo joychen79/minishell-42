@@ -6,12 +6,13 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 13:22:57 by jingchen          #+#    #+#             */
-/*   Updated: 2024/01/26 18:55:39 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/01/26 20:15:10 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./builtins.h"
 
+// gestiona export solo como funciona con bash
 extern	int	g_exit_status;
 
 char	*var_name(char	*argv)

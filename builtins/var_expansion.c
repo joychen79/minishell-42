@@ -6,7 +6,7 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 12:14:37 by jingchen          #+#    #+#             */
-/*   Updated: 2024/01/26 16:58:05 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/01/26 20:16:54 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,14 @@ char	*var_expansion(char *argv, t_env *env)
 		{
 			expenssion = ft_itoa(g_exit_status);
 		}
+		else
+		{
+			var_exp = parsing_doller(argv);
+			if (!var_exp)
+				return (NULL);
+		}
 		i++;
 	}
-	var_exp = parsing_doller(argv);
-	if (!var_exp)
-		return (NULL);
 	while (env)
 	{
 		if (is_existing (&env, var_exp) == 1)

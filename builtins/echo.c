@@ -6,11 +6,14 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 18:11:01 by jingchen          #+#    #+#             */
-/*   Updated: 2024/01/16 19:20:36 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/01/26 20:18:43 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./builtins.h"
+
+// getiona echo con variable.
+// se debe funcion con -nnnnn.
 
 static	int	nb_args(char **args)
 {
@@ -49,3 +52,4 @@ int	ft_echo(char **args)
 	g_exit_status = 0;
 	return (0);
 }
+

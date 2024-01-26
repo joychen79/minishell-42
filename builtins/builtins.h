@@ -6,7 +6,7 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 18:06:27 by jingchen          #+#    #+#             */
-/*   Updated: 2024/01/26 18:49:58 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/01/26 19:46:41 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char	*var_name(char	*argv);
 char	*get_current_path(t_env *env);
 int		ft_cd(char *args, t_env *env);
 char	*path_option(char *argv, t_env *env);
-void	exec_builtin(char **args, t_env *env);
+void	exec_builtin(char **args, t_env **env);
 int		is_builtin(char *command);
 
 /*Manage Expansions*/

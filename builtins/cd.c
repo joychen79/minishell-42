@@ -6,17 +6,13 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 13:28:16 by jingchen          #+#    #+#             */
-/*   Updated: 2024/01/26 18:44:00 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/01/26 20:18:18 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 
-//extern	int	g_exit_status;
-// step 1: save the current working directory in a char *;
-// step 2: use chdir to change working directory;
-// step 3: save the new directory in a char * and update the PWD in the env;
-// step 4: use the previous directory to apdate the OLDPWD in the env;
+// se debe gesitar 
 
 char	*get_current_path(t_env *env)
 {

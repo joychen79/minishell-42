@@ -6,7 +6,7 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 19:23:25 by jingchen          #+#    #+#             */
-/*   Updated: 2024/01/26 18:52:06 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/01/26 20:10:42 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	main(int ac, char **av, char **env)
 	
 	t_env	**envp = NULL;
 	envp = get_env(env);
-	//exec_builtin(av, envp);
+	exec_builtin(av, envp);
 	//ft_cd(av[2], envp);
 	//int i = 2;
 	//while(av[i])
@@ -45,7 +45,10 @@ int	main(int ac, char **av, char **env)
 	}*/
 
 	//ft_printf("%s",var_expansion(av[1], envp));
+	char * res = var_expansion(av[1], *envp);
+	printf("%s\n", res);
 	ft_env(envp);
+	
 
 
 	return (0);
