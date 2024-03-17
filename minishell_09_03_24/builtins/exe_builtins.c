@@ -6,7 +6,7 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 14:10:22 by jingchen          #+#    #+#             */
-/*   Updated: 2024/03/10 14:36:54 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/03/17 13:29:18 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,14 @@ int	is_builtin(char *command)
 static void	exec_builtin_util(char **argv, t_env *env)
 {
 	if (ft_strncmp(argv[0], "echo", ft_strlen(argv[0])) == 0)
-		ft_echo(argv);
+		g_exit_status = ft_echo(argv);
 	if ((ft_strncmp(argv[0], "pwd", ft_strlen(argv[0])) == 0))
 	{
-		if (argv[1])
-		{
-			g_exit_status = 1;
-			printf ("pwd: too many arguments\n");
-		}
-		else
-			ft_pwd();
+		g_exit_status = ft_pwd();
 	}
 	if (ft_strncmp(argv[0], "env", ft_strlen(argv[0])) == 0)
-		ft_env(env);
-	exit(0);
+		g_exit_status = ft_env(env);
+	exit(g_exit_status);
 }
 
 void	exec_builtin(char **argv, t_env *env)
@@ -58,18 +52,15 @@ void	exec_builtin(char **argv, t_env *env)
 	if (ft_strncmp(argv[0], "export", ft_strlen(argv[0])) == 0)
 	{
 		if (!argv[1])
-			print_export(env);
+			g_exit_status = print_export(env);
 		while (argv[i])
-			ft_export(env, argv[i++]);
+			g_exit_status = ft_export(env, argv[i++]);
 	}
 	else if (ft_strncmp(argv[0], "unset", ft_strlen(argv[0])) == 0)
 	{
-		if (!argv[1])
-		{
-			printf ("unset: not enough arguments\n");
-		}
 		while (argv[i])
 			ft_unset(&env, argv[i++]);
+		g_exit_status = 0;
 	}
 	else if (ft_strncmp(argv[0], "cd", ft_strlen(argv[0])) == 0)
 		ft_cd(argv[1], env);

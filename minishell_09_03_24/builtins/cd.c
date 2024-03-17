@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrimonte <rrimonte@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 13:28:16 by jingchen          #+#    #+#             */
-/*   Updated: 2024/02/28 17:03:15 by rrimonte         ###   ########.fr       */
+/*   Updated: 2024/03/17 12:55:31 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,48 @@ int	ft_cd(char *argv, t_env *env)
 	{
 		ft_export(env, oldpwd);
 		ft_export(env, newpwd);
-		g_exit_status = 0;
+	}
+	//else
+	//
+	free(aux);
+	free(oldpwd);
+	free(newpwd);
+	return (0);
+}
+
+/*int	ft_cd(char *argv, t_env *env)
+{
+	char	*oldpwd;
+	char	*newpwd;
+	char	*aux;
+	int		code;
+
+	aux = get_current_path(env);
+	oldpwd = ft_strjoin("OLDPWD=", aux, 0);
+	if (!argv || ft_strncmp (argv, "-", ft_strlen (argv)) == 0)
+	{
+		free(aux);
+		aux = path_option (argv, env);
+		newpwd = ft_strjoin("PWD=",aux, 0);
 	}
 	else
+		newpwd = ft_strjoin("PWD=", argv, 0);
+	if (!argv || ft_strncmp (argv, "-", ft_strlen (argv)) == 0)
 	{
-		//cambiar a perror
+		free(aux);
+		aux = path_option (argv, env);
+		code = chdir (aux);
+	}
+	else
+		code = chdir (argv);
+	if (!code)
+	{
+		ft_export(env, oldpwd);
+		ft_export(env, newpwd);
+		g_exit_status = 0;
+	}
+	else (llevar a exit de errores)
+	{
 		printf ("cd: no such file or directory: %s\n", argv);
 		g_exit_status = 1;
 	}
@@ -100,4 +137,4 @@ int	ft_cd(char *argv, t_env *env)
 	free(oldpwd);
 	free(newpwd);
 	return (0);
-}
+}*/

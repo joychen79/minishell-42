@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   unset_export.c                                     :+:      :+:    :+:   */
+/*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 13:22:57 by jingchen          #+#    #+#             */
-/*   Updated: 2024/03/10 14:15:07 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/03/17 14:11:23 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,60 @@ int	is_existing(t_env **env, char *name)
 	return (0);
 }
 
+/*void	ft_unset_primer(t_env **env, char *argv)
+{
+	t_env	*tmp;
+	t_env	*aux;
+	char	*straux2;
+
+	if (!env || !*env || !argv)
+		return ;
+	straux2 = var_name((*env)->value);
+	while (*env && !(ft_strncmp(straux2, argv, ft_strlen(straux2))))
+	{
+		free(straux2);
+		tmp = *env;
+		*env = (*env)->next;
+		free(tmp->value);
+		free(tmp);
+		straux2 = var_name((*env)->value);
+	}
+	free(straux2);
+	aux = *env;
+}
+
+int	ft_unset(t_env **env, char *argv)
+{
+	t_env	*tmp;
+	t_env	*aux;
+	char	*straux2;
+
+	if (!env || !*env || !argv)
+		return (1) ;
+	straux2 = var_name((*env)->value);
+	ft_unset_primer(env, argv);
+	aux = *env;
+	if (aux->next != NULL)
+		straux2 = var_name(aux->next->value);
+	while (aux && aux->next)
+	{
+		if (!(ft_strncmp(straux2, argv, ft_strlen(straux2))))
+		{
+			tmp = aux->next;
+			aux->next = tmp->next;
+			free(tmp->value);
+			free(tmp);
+		}
+		aux = aux->next;
+		if (aux && aux->next != NULL)
+			free(straux2);
+		if (aux && aux->next != NULL)
+			straux2 = var_name(aux->next->value);
+	}
+	free(straux2);
+	return (0);
+}*/
+
 void	ft_unset(t_env **env, char *argv)
 {
 	t_env	*tmp;
@@ -91,7 +145,7 @@ void	ft_unset(t_env **env, char *argv)
 	free(straux2);
 	aux = *env;
 	straux = var_name(argv);
-	if(aux->next != NULL)
+	if (aux->next != NULL)
 		straux2 = var_name(aux->next->value);
 	while (aux && aux->next)
 	{
@@ -105,35 +159,12 @@ void	ft_unset(t_env **env, char *argv)
 			straux = var_name(argv);
 		}
 		aux = aux->next;
-		if(aux && aux->next != NULL)
+		if (aux && aux->next != NULL)
 			free(straux2);
-		if(aux && aux->next != NULL)
+		if (aux && aux->next != NULL)
 			straux2 = var_name(aux->next->value);
 	}
 	free(straux);
 	free(straux2);
 	g_exit_status = 0;
 }
-
-/*int	ft_export(t_env *env, char	*argv)
-{
-	t_env	*aux;
-	char	*name;
-
-	if (!argv)
-		return (0);
-	name = var_name(argv);
-	aux = new_env(argv);
-	if (is_existing (&env, name) == 1)
-	{
-		ft_unset (&env, name);
-		addenv_back (&env, aux);
-	}
-	if (!is_existing(&env, name))
-	{
-		addenv_back(&env, aux);
-	}
-	g_exit_status = 0;
-	free (name);
-	return (0);
-}*/

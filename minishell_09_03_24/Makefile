@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rrimonte <rrimonte@student.42madrid.com    +#+  +:+       +#+         #
+#    By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/07 11:50:55 by rrimonte          #+#    #+#              #
-#    Updated: 2024/03/06 22:46:16 by rrimonte         ###   ########.fr        #
+#    Updated: 2024/03/17 11:26:04 by jingchen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ SRCS			=	get_next_line/get_next_line_bonus.c \
 					pipex_bonus/main_bonus.c \
 					builtins/env.c \
 					builtins/echo.c \
-					builtins/unset_export.c \
+					builtins/unset.c \
+					builtins/export.c \
 					builtins/get_env.c \
 					builtins/pwd.c \
 					builtins/cd.c \

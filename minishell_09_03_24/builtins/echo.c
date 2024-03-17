@@ -6,7 +6,7 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 18:11:01 by jingchen          #+#    #+#             */
-/*   Updated: 2024/03/10 16:22:52 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/03/17 12:15:57 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,34 +22,32 @@ static	int	nb_args(char **args)
 	return (size);
 }
 
-int valid_n_option (char *argv)
+int	valid_n_option(char *argv)
 {
-	int i;
-	
+	int	i;
+
 	i = 1;
-	while (argv[i])
-		{
-			if (argv[0] == '-' && argv[i] == 'n')	
-				i++;
-		}
-	if(!argv[i])
+	if (argv[0] == '-')
+	{
+		while (argv[i] == 'n')
+			i++;
+	}
+	if (!argv[i])
 		return (1);
-	else 
+	else
 		return (0);
 }
 
 int	ft_echo(char **args)
 {
 	int		i;
-	int		j;
 	int		n_option;
 
-	i = 2;
-	j = 1;
+	i = 1;
 	n_option = 0;
 	if (nb_args(args) > 1)
 	{
-		while (args[i] && ((ft_strncmp(args[i], "-n", ft_strlen(args[i])) == 0) || valid_n_option (args[i])))
+		while (args[i] && valid_n_option (args[i]))
 		{
 			n_option = 1;
 			i++;
