@@ -6,13 +6,12 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 13:28:16 by jingchen          #+#    #+#             */
-/*   Updated: 2024/03/17 12:55:31 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/03/18 19:51:08 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 
-extern	int	g_exit_status;
 // step 1: save the current working directory in a char *;
 // step 2: use chdir to change working directory;
 // step 3: save the new directory in a char * and update the PWD in the env;
@@ -35,7 +34,7 @@ char	*get_current_path(t_env *env)
 	return (curr_path);
 }
 
-char	*path_option(char *argv, t_env *env)
+/*char	*path_option(char *argv, t_env *env)
 {
 	char	*path;
 	char	*varname;
@@ -57,7 +56,7 @@ char	*path_option(char *argv, t_env *env)
 		free(varname);
 	}
 	return (path);
-}
+}*/
 
 int	ft_cd(char *argv, t_env *env)
 {
@@ -68,29 +67,18 @@ int	ft_cd(char *argv, t_env *env)
 
 	aux = get_current_path(env);
 	oldpwd = ft_strjoin("OLDPWD=", aux, 0);
-	if (!argv || ft_strncmp (argv, "-", ft_strlen (argv)) == 0)
-	{
-		free(aux);
-		aux = path_option (argv, env);
-		newpwd = ft_strjoin("PWD=",aux, 0);
-	}
-	else
-		newpwd = ft_strjoin("PWD=", argv, 0);
-	if (!argv || ft_strncmp (argv, "-", ft_strlen (argv)) == 0)
-	{
-		free(aux);
-		aux = path_option (argv, env);
-		code = chdir (aux);
-	}
-	else
-		code = chdir (argv);
+	newpwd = ft_strjoin("PWD=", argv, 0);
+	code = chdir (argv);
 	if (!code)
 	{
 		ft_export(env, oldpwd);
 		ft_export(env, newpwd);
 	}
-	//else
-	//
+	else //(llevar a exit de errores)
+	{
+		printf ("cd: no such file or directory: %s\n", argv);
+		return (1);
+	}
 	free(aux);
 	free(oldpwd);
 	free(newpwd);

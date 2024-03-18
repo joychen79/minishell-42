@@ -6,7 +6,7 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 14:10:22 by jingchen          #+#    #+#             */
-/*   Updated: 2024/03/18 19:34:30 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/03/18 19:52:01 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	exec_builtin(char **argv, t_env *env)
 			g_exit_status = ft_unset(&env, argv[i++]);
 	}
 	else if (ft_strncmp(argv[0], "cd", ft_strlen(argv[0])) == 0)
-		ft_cd(argv[1], env);
+		g_exit_status = ft_cd(argv[1], env);
 	else if (!ft_strncmp(argv[0], "echo", ft_strlen(argv[0]))
 		|| !ft_strncmp(argv[0], "pwd", ft_strlen(argv[0]))
 		|| !ft_strncmp(argv[0], "env", ft_strlen(argv[0])))
