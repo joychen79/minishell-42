@@ -6,13 +6,12 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 18:11:01 by jingchen          #+#    #+#             */
-/*   Updated: 2024/03/18 19:52:56 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/03/18 20:01:44 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./builtins.h"
-
-extern int	g_exit_status;
+//extern int	g_exit_status;
 
 int	ft_pwd(void)
 {

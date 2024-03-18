@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   get_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrimonte <rrimonte@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 18:19:22 by jingchen          #+#    #+#             */
-/*   Updated: 2024/02/28 12:35:48 by rrimonte         ###   ########.fr       */
+/*   Updated: 2024/03/18 20:01:13 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./builtins.h"
-
-extern	int	g_exit_status;
+//extern	int	g_exit_status;
 
 int	env_size(t_env *env)
 {

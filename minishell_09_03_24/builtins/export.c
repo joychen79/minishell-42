@@ -6,11 +6,12 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 14:13:56 by jingchen          #+#    #+#             */
-/*   Updated: 2024/03/18 19:22:30 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/03/18 20:04:19 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./builtins.h"
+//extern	int	g_exit_status;
 
 int	is_existing(t_env **env, char *name)
 {

@@ -6,11 +6,12 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 18:11:01 by jingchen          #+#    #+#             */
-/*   Updated: 2024/03/17 12:15:57 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/03/18 20:03:49 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./builtins.h"
+//extern	int	g_exit_status;
 
 static	int	nb_args(char **args)
 {
