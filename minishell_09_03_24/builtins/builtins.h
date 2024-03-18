@@ -6,7 +6,7 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 18:06:27 by jingchen          #+#    #+#             */
-/*   Updated: 2024/03/17 14:02:09 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/03/18 18:05:33 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ t_env	*get_env(char **str);
 t_env	*new_env(char *str);
 void	addenv_back(t_env **env, t_env *new);
 int		env_size(t_env *env);
-void		ft_unset(t_env **env, char	*argv);
+int		ft_unset(t_env **env, char	*argv);
 //int		ft_get_matrix_size(char **env);
 //char	**ft_sort_matrix(char **mat);
 t_env	*sort_env(t_env *env);

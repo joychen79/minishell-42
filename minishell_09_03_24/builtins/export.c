@@ -6,11 +6,38 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 14:13:56 by jingchen          #+#    #+#             */
-/*   Updated: 2024/03/17 13:29:49 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/03/18 19:22:30 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./builtins.h"
+
+int	is_existing(t_env **env, char *name)
+{
+	int		exist_len;
+	int		new_len;
+	char	*tmp;
+	t_env	*aux;
+
+	aux = *env;
+	new_len = ft_strlen(name);
+	if (!env || name == NULL)
+		return (-1);
+	while (aux)
+	{
+		tmp = var_name(aux->value);
+		exist_len = ft_strlen(tmp);
+		if ((exist_len == new_len)
+			&& (!(ft_strncmp(tmp, name, exist_len))))
+		{
+			free(tmp);
+			return (1);
+		}
+		free(tmp);
+		aux = aux->next;
+	}
+	return (0);
+}
 
 t_env	*sort_env(t_env *env)
 {
