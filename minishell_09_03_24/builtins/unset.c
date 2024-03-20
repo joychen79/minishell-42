@@ -6,7 +6,7 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 13:22:57 by jingchen          #+#    #+#             */
-/*   Updated: 2024/03/18 20:04:33 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/03/20 20:13:48 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ static int	check_argv(char *argv)
 			printf("unset : \'%s\' : is invalid identifier\n", argv);
 			return (1);
 		}
+		i++;
 	}
 	return (0);
 }
@@ -85,7 +86,7 @@ int	ft_unset(t_env **env, char *argv)
 	t_env	*aux;
 	char	*straux2;
 
-	if (!env || !*env || !check_argv(argv))
+	if (!env || !*env || check_argv(argv) == 1)
 		return (1);
 	unset_util(env, argv);
 	aux = *env;

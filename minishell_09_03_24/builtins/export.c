@@ -6,7 +6,7 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 14:13:56 by jingchen          #+#    #+#             */
-/*   Updated: 2024/03/18 20:04:19 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/03/20 17:40:34 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,10 @@ int	print_export(t_env *env)
 	{
 		name = var_name(sorted->value);
 		value = envvalue(sorted->value);
-		printf("declare -x %s=\"%s\"\n", name, value);
+		if (empty_value(sorted->value) == 1)
+			printf("declare -x %s=\"%s\"\n", name, value);
+		else
+			printf("declare -x %s\n", name);
 		free(name);
 		free(value);
 		sorted = sorted->next;
