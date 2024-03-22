@@ -6,7 +6,7 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 18:19:22 by jingchen          #+#    #+#             */
-/*   Updated: 2024/03/20 17:34:35 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/03/22 18:33:17 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ int	empty_value(char *value)
 
 int	ft_env(t_env *env)
 {
-	if (!env)
-	{
-		return (1);
-	}
+	//if (!env)
+	//{
+	//	return (1);
+	//}
 	while (env)
 	{
 		if (empty_value(env->value) == 1)

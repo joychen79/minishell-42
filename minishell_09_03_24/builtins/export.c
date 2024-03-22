@@ -6,7 +6,7 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 14:13:56 by jingchen          #+#    #+#             */
-/*   Updated: 2024/03/20 17:40:34 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/03/22 18:36:13 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	is_existing(t_env **env, char *name)
 
 	aux = *env;
 	new_len = ft_strlen(name);
-	if (!env || name == NULL)
-		return (-1);
+	//if (!env || name == NULL)
+	//	return (-1);
 	while (aux)
 	{
 		tmp = var_name(aux->value);
@@ -73,6 +73,8 @@ int	print_export(t_env *env)
 	char	*name;
 	char	*value;
 
+	if (!env)
+		return (1);
 	i = 0;
 	sorted = sort_env(env);
 	while (sorted)
@@ -96,8 +98,8 @@ int	ft_export(t_env *env, char	*argv)
 	t_env	*aux;
 	char	*name;
 
-	if (!argv)
-		return (0);
+	//if (!env)
+	//	return (1);
 	name = var_name(argv);
 	aux = new_env(argv);
 	if (is_existing (&env, name) == 1)
@@ -105,7 +107,7 @@ int	ft_export(t_env *env, char	*argv)
 		ft_unset (&env, name);
 		addenv_back (&env, aux);
 	}
-	if (!is_existing(&env, name))
+	if (!is_existing(&env, name) || !env)
 	{
 		addenv_back(&env, aux);
 	}

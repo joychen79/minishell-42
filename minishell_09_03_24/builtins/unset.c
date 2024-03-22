@@ -6,7 +6,7 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 13:22:57 by jingchen          #+#    #+#             */
-/*   Updated: 2024/03/20 20:13:48 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/03/22 17:12:17 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static int	check_argv(char *argv)
 	i = 0;
 	while (argv[i])
 	{
-		if (!ft_isalnum(argv[i]) || argv[i] != '_')
+		if (!ft_isalnum(argv[i]) && argv[i] != '_')
 		{
 			printf("unset : \'%s\' : is invalid identifier\n", argv);
 			return (1);

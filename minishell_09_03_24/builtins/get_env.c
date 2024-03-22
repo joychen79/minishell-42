@@ -6,7 +6,7 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 18:19:22 by jingchen          #+#    #+#             */
-/*   Updated: 2024/03/18 20:01:13 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/03/22 18:36:31 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ void	addenv_back(t_env **env, t_env *new)
 {
 	t_env	*aux;
 
-	if (!env)
-		return ;
+	//if (!env)
+	//	return ;
 	if (*env)
 	{
 		aux = *env;

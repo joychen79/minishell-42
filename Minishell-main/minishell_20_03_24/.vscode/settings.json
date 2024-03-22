@@ -1,0 +1,15 @@
+{
+    "files.associations": {
+		"get_next_line_bonus.h": "c",
+		"libft.h": "c",
+		"history.h": "c",
+		"cstdlib": "c",
+		"readline.h": "c",
+		"stdio.h": "c",
+		"errno.h": "c",
+		"builtins.h": "c",
+		"limits.h": "c",
+		"minishell.h": "c",
+		"signal.h": "c"
+	}
+}
