@@ -6,46 +6,17 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 13:28:16 by jingchen          #+#    #+#             */
-/*   Updated: 2024/03/22 18:16:32 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/03/24 14:13:03 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 
-char	*strrchr(const char *s, int c)
-{
-	int		i;
-	//int		j;
-	char	*new;
-
-	i = 0;
-	new = NULL;
-
-	while (s[i])
-		i++;
-	while (i >= 0)
-	{
-		if (s[i] == (char)c)
-			break ;
-		i--;
-	}
-		
-	/*j = 0;
-	while (j < i)
-	{
-		new[j] = s[j];
-		j++;
-	}
-	new[j] = '\0';*/
-	new = ft_substr(s, 0, i);
-	printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
-	return (new);
-}
-
-char	*get_current_path(t_env *env)
+char	*get_old_path(t_env *env)
 {
 	char	*curr_path;
 	char	*varname;
+	char	*oldpwd;
 
 	while (env)
 	{
@@ -56,42 +27,19 @@ char	*get_current_path(t_env *env)
 		env = env->next;
 		free(varname);
 	}
-	return (curr_path);
+	oldpwd = ft_strjoin("OLDPWD=", curr_path, 0);
+	return (oldpwd);
 }
 
-char	*pars_argv(char *argv, t_env *env)
+char	*get_new_path(void)
 {
-	char	*parsed;
-	char	*name;
-	char	*cur;
+	char	buf[1024];
+	char	*cwd;
+	char	*newpwd;
 
-	parsed = NULL;
-	cur = get_current_path(env);
-	if (!env)
-		return (NULL);
-	if (!ft_strncmp (argv, "..", ft_strlen (argv)))
-	{
-		printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
-		parsed = strrchr(cur, '/');
-		printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");	
-		
-		printf(" parsed is : %s\n", parsed);
-	}
-	else if (!argv)
-	{
-		while (env)
-		{
-			name = var_name(env->value);
-			if (!ft_strncmp (name, "HOME", ft_strlen (name)))
-				parsed = envvalue(env->value);
-			free(name);
-		}
-		env = env->next;
-	}
-	else
-		parsed = argv;
-		printf(" parsed is : %s\n", parsed);
-	return (parsed);
+	cwd = getcwd(buf, sizeof(buf));
+	newpwd = ft_strjoin("PWD=", cwd, 0);
+	return (newpwd);
 }
 
 static int	cd_error(char *argv)
@@ -104,28 +52,27 @@ int	ft_cd(char *argv, t_env *env)
 {
 	char	*oldpwd;
 	char	*newpwd;
-	char	*aux;
 	int		code;
-	char	*parsed;
 
-	parsed = pars_argv(argv, env);
 	newpwd = NULL;
-	oldpwd = NULL;
+	printf("eooo!!!!!!!!!!!!!!!!!!!!!!\n");
 	if (!env)
 		return (1);
-	aux = get_current_path(env);
-	code = chdir (parsed);
+	oldpwd = get_old_path(env);
+	code = chdir (argv);
 	if (!code)
 	{
-		oldpwd = ft_strjoin("OLDPWD=", aux, 0);
-		newpwd = ft_strjoin("PWD=", parsed, 0);
+		printf("iiiii!!!!!!!!!!!!!!!!!!!!!!\n");
+		newpwd = get_new_path();
 		ft_export(env, oldpwd);
+		printf("iiiii!!!!!!!!!!!!!!!!!!!!!!\n");
 		ft_export(env, newpwd);
+		printf("iiiii!!!!!!!!!!!!!!!!!!!!!!\n");
 	}
 	else
 		cd_error(argv);
-	free(aux);
 	free(oldpwd);
 	free(newpwd);
+	printf("eooo<<<<<<<<<<!!!!!!!!!!!!!!!!!!!!!!\n");
 	return (0);
 }

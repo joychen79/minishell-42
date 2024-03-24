@@ -6,7 +6,7 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 14:13:56 by jingchen          #+#    #+#             */
-/*   Updated: 2024/03/22 18:36:13 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/03/24 14:15:15 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	is_existing(t_env **env, char *name)
 
 	aux = *env;
 	new_len = ft_strlen(name);
-	//if (!env || name == NULL)
-	//	return (-1);
+	if (!env || name == NULL)
+		return (-1);
 	while (aux)
 	{
 		tmp = var_name(aux->value);
@@ -98,8 +98,9 @@ int	ft_export(t_env *env, char	*argv)
 	t_env	*aux;
 	char	*name;
 
-	//if (!env)
-	//	return (1);
+	if (!env)
+		return (1);
+	
 	name = var_name(argv);
 	aux = new_env(argv);
 	if (is_existing (&env, name) == 1)

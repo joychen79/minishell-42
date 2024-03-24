@@ -6,7 +6,7 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 18:06:27 by jingchen          #+#    #+#             */
-/*   Updated: 2024/03/20 18:03:15 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/03/24 13:50:39 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int		print_export(t_env *env);
 int		ft_export(t_env *env, char	*argv);
 int		is_existing(t_env **env, char *name);
 char	*var_name(char	*argv);
-char	*get_current_path(t_env *env);
+char	*get_old_path(t_env *env);
 int		ft_cd(char *args, t_env *env);
 void	exec_builtin(char **args, t_env *env);
 int		is_builtin(char *command);
@@ -59,5 +59,7 @@ void	ft_rl_replace_line(const char *text);
 void	signal_handler(int sig);
 int		empty_value(char *value);
 char	*path_option(char *argv, t_env *env);
+char	*get_new_path(void);
+char	**if_no_env(char **str);
 
 #endif

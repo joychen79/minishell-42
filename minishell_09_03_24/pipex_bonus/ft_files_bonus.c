@@ -6,7 +6,7 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 19:18:47 by rrimonte          #+#    #+#             */
-/*   Updated: 2024/03/10 13:30:09 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/03/24 13:30:56 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_check_files(t_data *g_data, t_env	*envp)
 		{
 			while (envp != NULL && ft_strncmp("PATH", envp->value, 4))
 				envp = envp->next;
-			if (envp->value == NULL)
+			if (envp == NULL)
 			{
 				g_data->b_env = 1;
 				return ;

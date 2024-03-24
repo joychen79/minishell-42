@@ -6,7 +6,7 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 13:22:57 by jingchen          #+#    #+#             */
-/*   Updated: 2024/03/22 17:12:17 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/03/24 14:20:27 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,14 +94,19 @@ int	ft_unset(t_env **env, char *argv)
 		straux2 = var_name(aux->next->value);
 	while (aux && aux->next)
 	{
+		printf("1\n");
 		if (!(ft_strncmp(straux2, argv, ft_strlen(argv))))
 			swap(aux);
+		printf("2\n");
 		aux = aux->next;
+		
 		if (aux && aux->next != NULL)
 		{
+			printf("entro\n");
 			free(straux2);
 			straux2 = var_name(aux->next->value);
 		}
+		printf("3\n");
 	}
 	free(straux2);
 	return (0);

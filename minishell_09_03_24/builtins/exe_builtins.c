@@ -6,7 +6,7 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 14:10:22 by jingchen          #+#    #+#             */
-/*   Updated: 2024/03/22 18:34:51 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/03/22 19:17:29 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,6 @@ void	exec_builtin(char **argv, t_env *env)
 	{
 		if (!argv[1])
 			g_exit_status = print_export(env);
-		if(!env)
-			
 		while (argv[i])
 			g_exit_status = ft_export(env, argv[i++]);
 	}

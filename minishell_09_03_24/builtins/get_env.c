@@ -6,7 +6,7 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 18:19:22 by jingchen          #+#    #+#             */
-/*   Updated: 2024/03/22 18:36:31 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/03/24 14:06:25 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ void	addenv_back(t_env **env, t_env *new)
 {
 	t_env	*aux;
 
-	//if (!env)
-	//	return ;
+	if (!env)
+		return ;
 	if (*env)
 	{
 		aux = *env;
@@ -58,14 +58,42 @@ void	addenv_back(t_env **env, t_env *new)
 		*env = new;
 }
 
+char	**if_no_env(char **str)
+{
+	char	*OLDPWD;
+	char	*PWD;
+	char	*ucom;
+	char	**newstr;
+
+		newstr = (char **)malloc(sizeof(char *) * 4);
+		OLDPWD = "OLDPWD";
+		PWD = get_new_path();
+		ucom = "_=/usr/bin/env";
+	if (!str || !*str)
+	{
+		newstr[0] = OLDPWD;
+		newstr[1] = PWD;
+		newstr[2] = ucom;
+		newstr[3] = NULL;
+	}
+	return (newstr);
+}
+
 t_env	*get_env(char **str)
 {
 	t_env	*aux;
 	t_env	*env;
 	int		i;
+	char	**newstr;
 
 	env = NULL;
 	i = 0;
+	if (!str || !*str)
+	{
+		newstr = if_no_env(str);
+		str = newstr;
+		free(newstr);
+	}
 	while (str[i])
 	{
 		aux = new_env(str[i]);

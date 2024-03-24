@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pipes_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrimonte <rrimonte@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 10:16:59 by rrimonte          #+#    #+#             */
-/*   Updated: 2024/02/28 18:46:27 by rrimonte         ###   ########.fr       */
+/*   Updated: 2024/03/24 13:51:18 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,8 +235,8 @@ void	child(t_data *g_data, t_env	*envp)
 	}
 	if (g_data->cmd_lst->next == 0)
 	{
-		exec_builtin(g_data->cmd_lst->cmd, envp);
 		g_data->cmd_rute = get_cmd_path(g_data);
+		exec_builtin(g_data->cmd_lst->cmd, envp);
 		printf("ruta----->|%s|\n",g_data->cmd_rute);
 		printf("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
 		int i;
