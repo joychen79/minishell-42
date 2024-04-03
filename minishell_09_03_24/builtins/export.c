@@ -6,7 +6,7 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 14:13:56 by jingchen          #+#    #+#             */
-/*   Updated: 2024/03/24 14:15:15 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/04/03 18:55:21 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ int	ft_export(t_env *env, char	*argv)
 
 	if (!env)
 		return (1);
-	
 	name = var_name(argv);
 	aux = new_env(argv);
 	if (is_existing (&env, name) == 1)
@@ -111,6 +110,7 @@ int	ft_export(t_env *env, char	*argv)
 	if (!is_existing(&env, name) || !env)
 	{
 		addenv_back(&env, aux);
+			printf("********************** OTRA VEZ NEW\n");
 	}
 	free(name);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 13:28:16 by jingchen          #+#    #+#             */
-/*   Updated: 2024/03/24 14:13:03 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/04/03 18:51:32 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,24 +55,23 @@ int	ft_cd(char *argv, t_env *env)
 	int		code;
 
 	newpwd = NULL;
-	printf("eooo!!!!!!!!!!!!!!!!!!!!!!\n");
 	if (!env)
 		return (1);
 	oldpwd = get_old_path(env);
 	code = chdir (argv);
 	if (!code)
 	{
-		printf("iiiii!!!!!!!!!!!!!!!!!!!!!!\n");
+		printf("********************** aqui OLD\n");
 		newpwd = get_new_path();
+		printf("********************** aqui NEW\n");
 		ft_export(env, oldpwd);
-		printf("iiiii!!!!!!!!!!!!!!!!!!!!!!\n");
+		printf("********************** OTRA VEZ OLD\n");
 		ft_export(env, newpwd);
-		printf("iiiii!!!!!!!!!!!!!!!!!!!!!!\n");
+		printf("********************** OTRA VEZ NEW\n");
 	}
 	else
 		cd_error(argv);
 	free(oldpwd);
 	free(newpwd);
-	printf("eooo<<<<<<<<<<!!!!!!!!!!!!!!!!!!!!!!\n");
 	return (0);
 }

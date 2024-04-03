@@ -6,7 +6,7 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 18:19:22 by jingchen          #+#    #+#             */
-/*   Updated: 2024/03/24 14:06:25 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/04/03 20:45:27 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,19 +62,18 @@ char	**if_no_env(char **str)
 {
 	char	*OLDPWD;
 	char	*PWD;
-	char	*ucom;
 	char	**newstr;
 
-		newstr = (char **)malloc(sizeof(char *) * 4);
-		OLDPWD = "OLDPWD";
-		PWD = get_new_path();
-		ucom = "_=/usr/bin/env";
+	newstr = (char **)malloc(sizeof(char *) * 3);
+	if (!newstr)
+		return (NULL);
+	PWD = get_new_path();
+	OLDPWD = "OLDPWD";
 	if (!str || !*str)
 	{
-		newstr[0] = OLDPWD;
-		newstr[1] = PWD;
-		newstr[2] = ucom;
-		newstr[3] = NULL;
+		newstr[0] = PWD;
+		newstr[1] = OLDPWD;
+		newstr[2] = NULL;
 	}
 	return (newstr);
 }
