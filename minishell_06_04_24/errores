@@ -1,0 +1,17 @@
+Direct leak of 16 byte(s) in 1 object(s) allocated from:
+    #0 0x7f4acef9c808 in __interceptor_malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cc:144
+    #1 0x7f4acf9083f3 in new_env builtins/get_env.c:36
+    #2 0x7f4acf90866b in get_env builtins/get_env.c:71
+    #3 0x7f4acf905781 in create_pipes pipex_bonus/ft_pipes_bonus.c:24
+    #4 0x7f4acf906dca in pipex pipex_bonus/main_bonus.c:18
+    #5 0x7f4acf90bb41 in main /home/roberto/minishellC_21_01_24/minishell/main.c:236
+    #6 0x7f4acec54082 in __libc_input_main ../csu/libc-input.c:308
+
+Indirect leak of 432 byte(s) in 27 object(s) allocated from:
+    #0 0x7f4acef9c808 in __interceptor_malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cc:144
+    #1 0x7f4acf9083f3 in new_env builtins/get_env.c:36
+    #2 0x7f4acf90866b in get_env builtins/get_env.c:71
+    #3 0x7f4acf905781 in create_pipes pipex_bonus/ft_pipes_bonus.c:24
+    #4 0x7f4acf906dca in pipex pipex_bonus/main_bonus.c:18
+    #5 0x7f4acf90bb41 in main /home/roberto/minishellC_21_01_24/minishell/main.c:236
+    #6 0x7f4acec54082 in __libc_input_main ../csu/libc-input.c:308

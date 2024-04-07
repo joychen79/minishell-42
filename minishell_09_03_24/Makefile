@@ -6,7 +6,7 @@
 #    By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/07 11:50:55 by rrimonte          #+#    #+#              #
-#    Updated: 2024/03/17 11:26:04 by jingchen         ###   ########.fr        #
+#    Updated: 2024/04/05 19:36:24 by jingchen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ LIBFT_FOLDER	=	libft/
 LIBFT_NAME		=	libft.a
 LIBS			=	$(LIBFT_FOLDER)$(LIBFT_NAME)
 AR				=	ar rcs
-CFLAGS			=	-Wall -Wextra -Werror #-g -fsanitize=address #-O3 
+CFLAGS			=	-Wall -Wextra -Werror -g #-fsanitize=address #-O3 
 RM				=	rm -rf
 RLINE_FLG_R42 =-L/Users/rrimonte/.brew/Cellar/readline/8.1.2/lib
 RLINE_INC_R42 =-I/Users/rrimonte/.brew/Cellar/readline/8.1.2/include
