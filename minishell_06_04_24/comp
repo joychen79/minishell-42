@@ -1,1 +1,0 @@
-gcc -Wall -Wextra -Werror -g -fsanitize=address libft/*c get_next_line/*c builtins/cd.c builtins/echo.c builtins/env.c builtins/exe_builtins.c builtins/get_env.c  builtins/pwd.c builtins/signal.c builtins/unset_export.c builtins/var_expansion.c  pipex_bonus/*c main.c -lreadline -L ~/.brew/opt/readline/lib -I  ~/.brew/opt/readline/include

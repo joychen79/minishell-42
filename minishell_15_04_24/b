@@ -1,0 +1,35 @@
+Makefile
+__MACOSX
+a
+a                    b
+a  >b
+a \ >b
+a b
+a.out.dSYM
+b
+builtins
+cat
+check.c
+check.o
+free.c
+free.o
+get_next_line
+infile
+init.c
+init.o
+libft
+ls
+ls ls
+main.c
+main.o
+minishell
+minishell.h
+outfile
+outfile2
+pipex_bonus
+split_cmd.c
+split_cmd.o
+testers
+utils.c
+utils.o
+wc
