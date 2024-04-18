@@ -6,7 +6,7 @@
 #    By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/07 11:50:55 by rrimonte          #+#    #+#              #
-#    Updated: 2024/04/15 18:13:29 by jingchen         ###   ########.fr        #
+#    Updated: 2024/04/18 16:52:47 by jingchen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SRCS			=	get_next_line/get_next_line_bonus.c \
 					builtins/export.c \
 					builtins/exe_builtins.c \
 					builtins/var_expansion.c \
+					builtins/builtins_util.c \
 					main.c \
 					init.c \
 					split_cmd.c \

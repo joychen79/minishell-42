@@ -6,27 +6,104 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 12:14:37 by jingchen          #+#    #+#             */
-/*   Updated: 2024/04/15 19:09:55 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/04/18 18:50:20 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./builtins.h"
 
 //extern int	g_exit_status;
-char	*envvalue(char *env)
+
+int	find_dolar(char *argv)
 {
-	int		i;
-	char	*env_value;
+	int	i;
 
 	i = 0;
-	while (env[i] && env[i] != '=')
+	while (argv[i])
+	{
+		if (argv[i] == '$')
+		{
+			return (i);
+			break ;
+		}
 		i++;
-	i++;
-	env_value = ft_substr(env, i, ft_strlen(env));
-	return (env_value);
+	}
+	return (0);
 }
 
 char	*parsing_doller(char *argv)
+{
+	int		i;
+	int		j;
+	char	*valid_name;
+
+	i = find_dolar(argv);
+	valid_name = NULL;
+	i = i + 1;
+	j = i;
+	while (argv[i] && ((ft_isalnum(argv[i]) || argv[i] == '_')))
+		i++;
+	valid_name = ft_substr(argv, j, i - 1);
+	return (valid_name);
+}
+
+int	is_interogante(char	*argv)
+{
+	int	i;
+
+	i = 0;
+	while (argv[i])
+	{
+		if (argv[i] == '$' && argv[i + 1] == '?')
+		{
+			return (1);
+		}
+		i++;
+	}
+	return (0);
+}
+
+char	*find_var(char *argv, t_env *env)
+{
+	char	*name;
+	t_env	*aux;
+	char	*var_exp;
+	char	*value;
+
+	aux = env;
+	value = NULL;
+	var_exp = parsing_doller(argv);
+	while (aux)
+	{
+		name = var_name(aux->value);
+		if ((ft_strlen(name) == ft_strlen(var_exp))
+			&& (!(ft_strncmp(name, var_exp, ft_strlen(name)))))
+		{
+			free(name);
+			value = envvalue(aux->value);
+			break ;
+		}
+		free(name);
+		aux = aux->next;
+	}
+	return (value);
+}
+
+char	*var_expansion(char *argv, t_env *env)
+{
+	char	*expenssion;
+	t_env	*aux;
+
+	aux = env;
+	expenssion = NULL;
+	if (is_interogante(argv))
+		expenssion = ft_itoa(g_exit_status);
+	else
+		expenssion = find_var(argv, aux);
+	return (expenssion);
+}
+
+/*char	*parsing_doller(char *argv)
 {
 	int		i;
 	int		j;
@@ -91,36 +168,11 @@ char	*var_expansion(char *argv, t_env *env)
 		{
 			free(tmp);
 			expenssion = envvalue(aux->value);
-			break;
+			break ;
 		}
 		free(tmp);
 		aux = aux->next;
 	}
 	free(var_exp);
 	return (expenssion);
-}
-/*
-
-	char	*tmp;
-	t_env	*aux;
-
-	aux = *env;
-	new_len = ft_strlen(name);
-	if (!env || name == NULL)
-		return (-1);
-	while (aux)
-	{
-		tmp = var_name(aux->value);
-		
-		exist_len = ft_strlen(tmp);
-		if ((exist_len == new_len)
-			&& (!(ft_strncmp(tmp, name, exist_len))))
-		{
-			printf("env--->|%s|\n",tmp);
-			free(tmp);
-			return (1);
-		}
-		free(tmp);
-		aux = aux->next;
-	}
-*/
+}*/

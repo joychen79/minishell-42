@@ -6,7 +6,7 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 14:13:56 by jingchen          #+#    #+#             */
-/*   Updated: 2024/04/15 19:07:10 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/04/18 16:25:50 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	is_existing(t_env **env, char *name)
 	while (aux)
 	{
 		tmp = var_name(aux->value);
-
 		exist_len = ft_strlen(tmp);
 		if ((exist_len == new_len)
 			&& (!(ft_strncmp(tmp, name, exist_len))))

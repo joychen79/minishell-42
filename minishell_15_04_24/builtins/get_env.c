@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrimonte <rrimonte@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 18:19:22 by jingchen          #+#    #+#             */
-/*   Updated: 2024/04/10 23:15:55 by rrimonte         ###   ########.fr       */
+/*   Updated: 2024/04/18 16:50:41 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,15 +87,13 @@ t_env	*get_env(char **str)
 	t_env	*env;
 	int		i;
 	int		noenv;
-	char	**newstr;
 
 	env = NULL;
 	i = 0;
 	noenv = 0;
 	if (*str == NULL)
 	{
-		newstr = if_no_env(str);
-		str = newstr;
+		str = if_no_env(str);
 		noenv = 1;
 	}
 	while (str[i])
@@ -105,9 +103,6 @@ t_env	*get_env(char **str)
 		i++;
 	}
 	if (noenv == 1)
-	{
-		free(str[0]);
-		free(str);
-	}
+		freestr (str);
 	return (env);
 }

@@ -6,7 +6,7 @@
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 18:06:27 by jingchen          #+#    #+#             */
-/*   Updated: 2024/04/15 16:58:44 by jingchen         ###   ########.fr       */
+/*   Updated: 2024/04/18 18:53:21 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,15 @@ char	*envvalue(char *env);
 void	ft_rl_replace_line(const char *text);
 void	signal_handler(int sig);
 int		empty_value(char *value);
-char	*path_option(char *argv, t_env *env);
 char	*get_new_path(void);
 char	**if_no_env(char **str);
 void	increment_shlv(t_env *env);
 void	child_ctrl_c(int sig_num);
 void	quite_heredoc(int a);
 void	signal_father(int sig);
+void	freestr(char **str);
+char	*find_var(char *argv, t_env *env);
+int		is_interogante(char	*argv);
+int		find_dolar(char *argv);
 
 #endif

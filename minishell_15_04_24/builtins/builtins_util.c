@@ -1,19 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   unset_2.c                                          :+:      :+:    :+:   */
+/*   builtins_util.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jingchen <jingchen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/26 13:22:57 by jingchen          #+#    #+#             */
-/*   Updated: 2024/04/18 18:21:46 by jingchen         ###   ########.fr       */
+/*   Created: 2024/04/18 16:49:14 by jingchen          #+#    #+#             */
+/*   Updated: 2024/04/18 18:50:36 by jingchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./builtins.h"
-//extern	int	g_exit_status;
 
-/*char	*var_name(char	*argv)
+void	freestr(char **str)
+{
+	if (str || *str)
+	{
+		free (str[0]);
+		free (str);
+	}
+}
+
+char	*envvalue(char *env)
+{
+	int		i;
+	char	*env_value;
+
+	i = 0;
+	while (env[i] && env[i] != '=')
+		i++;
+	i++;
+	env_value = ft_substr(env, i, ft_strlen(env));
+	return (env_value);
+}
+
+char	*var_name(char	*argv)
 {
 	char	*name;
 	int		i;
@@ -34,32 +55,4 @@
 	if (argv[i] == '\0')
 		name = ft_substr(argv, (int)0, i);
 	return (name);
-}*/
-
-t_env	**libera_primera(t_env **env, char *argv)
-{
-	t_env	*tmp;
-	char	*straux2;
-
-	straux2 = var_name((*env)->value);
-	if (*env && !(ft_strncmp(straux2, argv, ft_strlen(straux2))))
-	{
-		free(straux2);
-		tmp = (*env)->next;
-		free(*env);
-		*env = tmp;
-	}
-	else
-		free(straux2);
-	return (env);
-}
-
-void	swap(t_env *aux)
-{
-	t_env	*tmp;
-
-	tmp = aux->next;
-	aux->next = tmp->next;
-	free(tmp->value);
-	free(tmp);
 }
